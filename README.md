@@ -8,6 +8,11 @@ This repository examines the proposed proof of the Riemann hypothesis in Alessan
 
 **What our attempted repair proves.** We recover the formula with all the zeros included. When we narrow the interval, our formula has an extra term that accounts for the zeros left out. For example, a hypothetical zero with real part $0.6$ would fall outside the interval $(0.49,0.51)$, and a suitable choice of weight would make the extra term nonzero. To finish the proof, we would have to show that this term vanishes for every allowed weight, however narrow the interval. That would rule out every zero off the line, which is exactly RH. This step remains open.
 
+**Why the attempted repair stopped.** We tried two ways to show that the extra term vanishes.
+
+- **Start with a wide interval and shrink it.** In a model built from the manuscript’s test functions, we deliberately inserted two zeros at $0.4$ and $0.6$, preserving the symmetry about $1/2$. For a fixed positive weight, the pair contributes the same positive amount at every width that includes it, then contributes zero once the interval excludes it. Symmetry and agreement over a whole range of wider intervals therefore cannot guarantee the same answer for narrower ones.
+- **Estimate the error using the primes.** After accounting for prime squares and higher powers, we compared a weighted sum of primes in a moving interval with its predicted value. If the absolute error stayed below one fixed number as the interval moved to larger primes, RH would follow. Our estimate shows that the *percentage* error tends to zero. Because the predicted value grows, even a shrinking percentage error can correspond to an unbounded *absolute* error. The estimate therefore still allows the kind of growth an off-line zero would cause. [Repair report, pp. 7 and 11–12](review/trace-formula-repair.pdf)
+
 ## Reports
 
 | Report | Contents | Files |
