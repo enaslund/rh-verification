@@ -1,0 +1,341 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,mathtools,microtype,booktabs,tabularx,array,xcolor,fancyhdr}
+\usepackage[letterpaper,top=0.88in,bottom=0.88in,left=0.94in,right=0.94in,headheight=14pt,headsep=15pt]{geometry}
+\usepackage[unicode,colorlinks=true,linkcolor=blue!40!black,urlcolor=blue!40!black,citecolor=blue!40!black]{hyperref}
+\hypersetup{pdftitle={Where the trace argument in The Music of the Primes fails},pdfsubject={Counterexamples and the missing global trace identity}}
+\definecolor{ink}{HTML}{18354A}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt minus 1pt}
+\setlength{\emergencystretch}{1em}
+\setlength{\abovedisplayskip}{8pt plus 2pt minus 2pt}
+\setlength{\belowdisplayskip}{8pt plus 2pt minus 2pt}
+\setlength{\abovedisplayshortskip}{4pt plus 1pt}
+\setlength{\belowdisplayshortskip}{5pt plus 1pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\itshape Where the trace argument fails}
+\fancyhead[R]{\small\itshape The Music of the Primes}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\C}{\mathbb C}
+\newcommand{\A}{\mathbb A}
+\newcommand{\G}{\mathcal G}
+\newcommand{\ind}{\mathbf 1}
+\newcommand{\Rea}{\operatorname{Re}}
+\newcommand{\Ima}{\operatorname{Im}}
+\newcommand{\ran}{\operatorname{ran}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\dd}{\,d}
+\newcommand{\step}[1]{\par\smallskip{\color{ink}\bfseries #1}\enspace}
+\newcommand{\source}[1]{{\small\itshape #1}\par}
+\newcommand{\pagepart}[2]{\clearpage\section{#1}\label{#2}}
+\begin{document}
+\thispagestyle{plain}
+{\color{ink}\LARGE\bfseries Where the trace argument in\\[3pt]
+\textit{The Music of the Primes} fails\par}
+\smallskip
+{\large A mathematical review of Alessandro Maria Masullo's manuscript\par}
+\medskip
+
+The proposed proof of the Riemann hypothesis breaks at the passage from a global trace to a sum of local traces on p.~520. There is a counterexample already at the prime \(2\). A smooth admissible test gives the claimed prime contribution \(\log 2\). The integral used to compute it is identically zero after the prescribed cutoff. The lifting factor printed in the statement also vanishes. Both conclusions follow directly from the definitions, before any difficult limit is taken.
+
+There are separate errors in the Hilbert-space argument that is meant to justify the passage. Some admit exact local repairs. Carrying those repairs through the proof leaves an explicit distribution to be evaluated. On rational tests, its vanishing for arbitrarily narrow strips is equivalent to the Riemann hypothesis. The counterexamples disprove several intermediate statements and the all-number-field formula with its printed measure. They leave the location of the zeta zeros open.
+
+\step{The proposed identity.}
+Write \(C_F=\A_F^\times/F^\times\) for the idele class group of a number field and \(C_F^1\) for the compact kernel of its norm. It suffices for most tests to take \(F=\Q\) and \(\phi(g)=b(\log|g|)\) with \(b\in C_c^\infty((0,\infty))\). Thus \(\phi\) vanishes near \(C_F^1\) and has support where the norm exceeds one. With compact Haar mass one, put
+\[
+ B_b(z)=\int_\R b(x)e^{zx}\dd x,\qquad
+ P(b)=B_b(1/2)+B_b(-1/2),\qquad \lambda_\rho=\rho-\tfrac12 .
+\]
+Let \(Z_\alpha(b)=\sum_{|\Rea\lambda_\rho|<\alpha}m_\rho B_b(\lambda_\rho)\), where \(\rho\) runs over distinct nontrivial zeros of \(\zeta\) and \(m_\rho\) is its multiplicity. Let \(Z_{\rm all}\) denote the unrestricted sum. For these one-sided rational tests the sum \(W\) of the local distributions is explicitly
+\[
+ W(b)=\sum_{p\ {\rm prime}}\log p\sum_{j\ge1}p^{-j/2}b(j\log p)
+       +\int_0^\infty b(x)\frac{e^{-x/2}}{1-e^{-2x}}\dd x.
+\]
+The prime sum is finite and the integral avoids \(x=0\). The classical explicit formula reads \(W=P-Z_{\rm all}\). Theorem 12.5.1.1, pp.~519--520, claims \(W=P-Z_\alpha\) for each positive width. Section~\ref{sec:missing} identifies the exact step at which those two zero sums would have to be proved equal.
+
+\smallskip
+{\small
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.22\linewidth}X@{}}
+\toprule
+Manuscript pages & Claims tested in this review\\
+\midrule
+492--496 & Integral for the first prime shell and its claimed Poisson value (\S\ref{sec:shell}).\\
+480, 484, 489 & Strict inclusion, closed range and the one-prime quotient (\S\S\ref{sec:cut}--\ref{sec:repair}).\\
+487--489 & Convergence through Paley--Wiener levels (\S\ref{sec:pw}).\\
+514, 519--520 & Global comparison and the normalization of Haar measure (\S\S\ref{sec:missing}--\ref{sec:volume}).\\
+522 & Trace formula with capped multiplicities (\S\ref{sec:last}).\\
+351--353, 495--496 & What happens to an orbital coefficient as the levels grow (\S\ref{sec:limits}).\\
+231, 426, 451 & Earlier retraction, projection and spectral estimates (Appendix~\ref{sec:earlier}).\\
+\bottomrule
+\end{tabularx}\par}
+{\small Manuscript page and equation references identify the supplied 940-page version \cite{masullo}. The scope here is the main proof and its decisive dependencies. A broader chapter-by-chapter audit is available separately \cite{companion}.}
+
+\pagepart{One prime gives incompatible trace values}{sec:shell}
+\source{Theorem 11.3.2.1, pp.~495--496. The shell is defined on pp.~492--494.}
+
+Take \(F=\Q\), \(S=\{\infty\}\), the trivial character, \(a=1/2\), \(s=2\), \(I=[-1/4,1/4]\), and the section \(\tau(t)=(t,1_f)\), with finite components one. There is no finite ramification, \(\operatorname{Pic}(\Z)=1\), and a radial test is invariant under the required finite units. Choose \(b\ge0\) smooth, supported in \((\log 1.9,\log 2.1)\), with \(b(\log 2)=1\). For the shell adding \(2\), the local uniformizer has norm \(1/2\) and \(\mu_2(\Z_2^\times)=1\). Exactly its power \(j=-1\) contributes. The right side of (11.3.2.1) is therefore
+\begin{equation}
+ \log 2\sum_{j\in\Z} b(-j\log 2)=\log 2. \label{eq:prime}
+\end{equation}
+
+\step{The cutoff in the proof kills the integrand.}
+Let \(X_k\) be the ideles that are units at the first \(k\) specified places, and \(\alpha_k=\ind_{X_k}\). A shell requires a nonunit at the new place, so \(X_{k+1}\subset X_k\). The manuscript specifies restriction in the second kernel variable (pp.~24, 495). In (11.3.2.3) both factors below are evaluated at \(y=\xi g\tau(t)\). For every \(k_1\ge k+1\),
+\begin{equation}
+    (\alpha_{k+1}-\alpha_k)(y)\,\alpha_{k_1}(y)=0
+    \qquad\text{for every }y. \label{eq:mask}
+\end{equation}
+Indeed \(\alpha_{k_1}(y)=1\) forces both of the preceding indicators to be one. Thus every sufficiently late integral in the claimed limit is zero, for every cutoff in the first variable. The extra factor \(\alpha_{k_1}\) appears in the proof, after (11.3.2.1). The assertion that this operation preserves the mass \eqref{eq:prime} is false. Reversing the difference or changing the rates of the limits preserves \eqref{eq:mask}.
+
+\step{The lifting factor in the statement also vanishes.}
+Formula (11.3.2.2) prescribes a sum over \(\xi\in\Q^\times\) of integrals over a fundamental domain \(E_\Q^1\) of
+\[
+ \ind_{\tau(\R_{>0})}(\xi gx)\,\ind_{\tau(\R_{>0})}(\xi gy).
+\]
+Read its suppressed differential as the norm-one Haar measure \(d\mu_1(g)\) used in the adjoining formulas. For fixed \(x,\xi\), the first indicator forces \(g=\xi^{-1}\tau(|x|)x^{-1}\), by taking norms. The domain may be chosen as \(\{1\}\times\widehat{\Z}^{\times}\), an infinite compact group with nonatomic Haar measure. Each section in \(g\) has measure zero. The sum over the countable group \(\Q^\times\) is zero at every \((x,y)\). The indented lift is multiplication by this factor (p.~508). On this literal reading the left side of (11.3.2.1) itself vanishes.
+
+There is a valid normalization for ordinary unfolding. For \(D_0=\R_{>0}\times\prod_p\Z_p^\times\), exactly one rational multiplier takes any idele into \(D_0\), so \(\sum_{q\in\Q^\times}\ind_{D_0}(qx)=1\). This recovers the total integral under ordinary unfolding. It gives no value for a particular cut-off shell.
+
+\step{The cited Poisson calculation gives a third value.}
+Put \(c=\log 2\). On this character the exponents in (11.3.2.5) are \(2\pi i n/c-1/2\). Poisson summation gives
+\[
+ \sum_{n\in\Z}\int b(x)e^{(2\pi in/c-1/2)x}\dd x
+   =c\sum_{j\in\Z}2^{-j/2}b(jc)=\frac{\log 2}{\sqrt2}.
+\]
+The value \(\log 2/\sqrt2\) is also the genuine \(2\)-adic term of \(W(b)\) on p.~1 of this review. Equation (7.4.2.1) of the manuscript, p.~367, has the unshifted exponents and gives \(\log 2\). Tracking the half-shift explains that difference. The zero product \eqref{eq:mask} persists under either weighting.
+
+\pagepart{The cutoff erases the asserted strict inclusion}{sec:cut}
+\source{Theorem 11.1.2.1(2), p.~480, Proposition 11.2.0.1(2), p.~484, and (11.2.2.1), p.~489.}
+
+Stay in the rational component on which \(C_\Q^1\) acts trivially. Before the critical shift, put \(x=\log|g|\), \(w(x)=1+x^2\), \(H=L^2(\R,w(x)\,dx)\). This is the manuscript's allowed exponent \(s=2\). Let \(\Theta\) be the space in this component obtained from theta sums \(\sum_{q\in\Q^\times}f(qg)\) of adelic Schwartz tests with \(f(0)=\widehat f(0)=0\). Rescaling the real variable of \(f\) makes \(\Theta\) invariant under translations in \(x\). On taking \(S_i=\varnothing\), \(S_{i'}=\{p\}\), the operation on p.~484 is
+\[
+    D=1-T_c,\qquad T_ch(x)=h(x+c),\qquad c=\log p .
+\]
+Indeed insertion of \(\pi_p^{-1}\) increases the log norm by \(c\). Either sign convention gives the same difference range on this translation-invariant space.
+
+\step{Equality holds at every finite cutoff.}
+Write \(M_\eta\) for multiplication by a cutoff. At \(\Lambda\ge1\) the two sharp cutoffs on p.~428 are the indicators of \([-L,\infty)\) and \([-L,L]\), where \(L=\log\Lambda\). For any \(h\in\Theta\), the finite sum \(v_N=\sum_{j=0}^{N-1}T_c^j h\) belongs to \(\Theta\). Telescoping gives
+\[
+ M_\eta Dv_N=M_\eta h-M_\eta T_c^Nh,\qquad
+ \|M_\eta T_c^Nh\|_H^2
+   \le \int_{Nc-L}^{\infty}|h(y)|^2w(y)\dd y\longrightarrow0 .
+\]
+For the inequality take \(Nc\ge 2L\). Then \(w(x)\le w(x+Nc)\) on \(x\ge -L\). Also \(D\Theta\subset\Theta\). Consequently,
+\begin{equation}
+       \overline{M_\eta D\Theta}^{\,H}
+           =\overline{M_\eta\Theta}^{\,H}. \label{eq:cut}
+\end{equation}
+These are exactly the two spaces in (11.1.2.6) for the chosen pair. The theorem requires strict inclusion on a subsequence of cutoffs tending to infinity. Equation \eqref{eq:cut} holds for the entire sequence. This calculation takes place on actual theta tests and uses no density assertion.
+
+\step{The raw difference range on the completion is nonclosed.}
+Translation is bounded on \(H\). The operator \(D\) is injective because a nonzero \(c\)-periodic function cannot belong to \(H\). For \(0\ne\psi\in C_c^\infty((1,2))\) put \(u_R(x)=R^{-3/2}\psi(x/R)\). A change of variable and the mean value estimate give
+\[
+ \|u_R\|_H^2=\int (y^2+R^{-2})|\psi(y)|^2\dd y,\qquad
+ \|Du_R\|_H=O_c(R^{-1}).
+\]
+Thus \(D\) is not bounded below. The bounded inverse theorem precludes closed range. The identification of the completed rational theta space with \(H\) used on p.~484 can also be checked directly. For \(D_t=t\,d/dt\), the unshifted theta test from \(D_t(D_t+1)e^{-\pi t^2}\) and the standard finite unit balls is Schwartz in \(x\). Unfolding its Mellin integral and integrating by parts gives \(2\xi(z)=z(z-1)\pi^{-z/2}\Gamma(z/2)\zeta(z)\). Its Fourier transform is \(2\xi(it)\) up to the choice of sign in \(t\). This never vanishes, by the zero-free line \(\Rea z=1\), the functional equation, and \(\xi(0)=1/2\). A vector orthogonal to all its translates would give a tempered distribution \(w\bar v\) whose Fourier transform is killed by this nowhere-zero smooth multiplier. Local division on compact test functions gives \(v=0\). Thus the quotient by the raw range in (11.2.2.1) is non-Hausdorff here.
+
+\pagepart{A one-prime repair and the effect of the critical shift}{sec:repair}
+\source{The proposed quotient is (11.2.2.1), p.~489. The passage to shifted orbital exponents is on p.~496.}
+
+The separated unshifted quotient can be constructed explicitly. With \(w,H,D,c\) as in \S\ref{sec:cut}, define on \(0\le x<c\)
+\[
+    P_ch(x)=\sum_{j\in\Z}h(x+jc),\qquad
+    A_c(x)=\sum_{j\in\Z}w(x+jc)^{-1}.
+\]
+The latter sum is uniformly bounded above and away from zero. Weighted Cauchy--Schwarz gives a bounded map \(P_c:H\to L^2([0,c),A_c^{-1}dx)\). Its bounded right inverse sends \(v\) to the function with values
+\[
+   (Rv)(x+jc)=\frac{v(x)}{A_c(x)w(x+jc)} .
+\]
+One has \(P_cD=0\). Orthogonality to \(\ran D\) says precisely that \(w h\) is \(c\)-periodic. These are the vectors in \(\ran R\), and the formula for \(R\) gives
+\(\langle h,Rv\rangle_H=\langle P_ch,v\rangle_{L^2(A_c^{-1}dx)}\).
+Taking orthogonal complements yields \(\ker P_c=\overline{\ran D}\).
+
+Consequently convolution by \(b\in C_c^\infty(\R)\) on \(H/\overline{\ran D}\) is circle convolution by the periodization of \(b\). The ordinary circle norm is equivalent to the quotient norm. In that norm the Fourier modes diagonalize this operator, with rapidly decreasing eigenvalues. Its trace is \(c\sum_{j\in\Z} b(jc)\) by Poisson summation. This recovers \(\log 2\) for the test in \S\ref{sec:shell} and identifies the space on which that answer is valid.
+
+\step{Why this quotient does not give the cut-off kernel.}
+Multiplication by the manuscript's nonperiodic cutoff does not descend to this quotient. For example take \(\eta=\ind_{[0,\infty)}\) and \(h\) a nonzero bump in \((0,c)\). Then \(P_cDh=0\), whereas \(P_c(M_\eta Dh)=h\) on \([0,c)\). Translating the bump gives the same example for a left endpoint \(-L\). The order of passage to a quotient and application of the cutoff matters for the trace argument.
+
+\step{Why transporting the quotient to the critical shift also fails.}
+In log coordinates the critical twist multiplies a test by \(e^{ax}\) with \(a=1/2\). It conjugates the test-space difference to \(D_a=1-e^{-ac}T_c\). The positive-width space used for the shifted problem has norm
+\[
+  \|h\|_{\alpha,s}^2=\int_\R |h(x)|^2 e^{2\alpha|x|}(1+x^2)^{s/2}\dd x .
+\]
+For \(0\le\alpha<a\), \(s\ge0\), translations satisfy
+\(\|T_{nc}\|\le C_s e^{\alpha nc}(1+nc)^{s/2}\) for \(n\ge0\). Therefore \(D_a^{-1}=\sum_{n\ge0}e^{-anc}T_{nc}\) converges in operator norm. The same inverse preserves any closed translation-invariant theta subspace. The corresponding completed quotient is zero. A nonzero circle trace before this shift supplies no prime contribution in the shifted completion. A construction that first keeps the Paley--Wiener levels finite must justify the subsequent limit.
+
+\pagepart{A projection limit loses a nonzero operator term}{sec:pw}
+\source{Theorem 11.2.1.2(2), equation (11.2.1.4), p.~488.}
+
+Write \(\G\) for the closed shifted theta space, \(P\) for its orthogonal projection, \(Q_X\) for the orthogonal projection onto a Paley--Wiener level inside \(\G\), and \(A_bh(x)=\int b(y)h(x-y)\,dy\). For a fixed admissible cutoff \(\eta\), put \(K=M_\eta PA_b\). Even granting both \(Q_X\to P\) strongly and the asserted trace class property of \(K\), finite-rank approximation gives
+\[
+       KQ_X\longrightarrow KP\quad\text{in trace norm}.
+\]
+The reason is that the \(Q_X\) are self-adjoint and uniformly bounded. Equation (11.2.1.4) asserts the limit \(K\) on the whole Hilbert space. It therefore requires \(M_\eta PA_b(1-P)=0\). Translation invariance of \(\G\) proves \((1-P)A_bP=0\), an equality for the opposite matrix entry.
+
+\step{An actual vector distinguishes the two limits.}
+Use \(F=\Q\), \(S=\{\infty\}\), \(a=1/2\), \(s=2\), the trivial compact character, and the absolute space \(H=L^2((1+x^2)\,dx)\) of the theorem. Choose any critical-line zeta zero \(1/2+i\gamma\), whose existence is unconditional \cite{conrey}. The functional \(u\mapsto\int u(x)e^{i\gamma x}\,dx\) is continuous on \(H\), since \(\int (1+x^2)^{-1}\,dx<\infty\). It annihilates \(\G\). Indeed, unfolding a rational theta test gives the factor \(\zeta(z)\) in its Mellin transform before the half-shift. At each exceptional finite place the coefficients of its local series vanish for sufficiently negative valuations and stabilize for sufficiently positive valuations. Multiplying by \(1-p^{-z}\) leaves a Laurent polynomial in \(p^{-z}\). The real local Mellin factor is holomorphic near \(1/2+i\gamma\). Continuing the unfolded identity gives the assertion for tests, hence for the closure. Thus \(v(x)=e^{-i\gamma x}/(1+x^2)\) belongs to \(\G^\perp\).
+
+Take a nonzero shifted theta test \(u\in\G\) with \(wu\in L^1\), \(w(x)=1+x^2\). One can use the Gaussian derivative in \S\ref{sec:cut} multiplied in log coordinates by \(e^{x/2}\). Poisson summation and the two zero constant terms give rapid decay at both ends. For \(U_yv(x)=v(x-y)\), using the scalar product linear in its first argument gives
+\[
+ \langle u,U_yv\rangle_H=e^{-i\gamma y}
+    \int_\R\frac{u(x)e^{i\gamma x}w(x)}{1+(x-y)^2}\dd x .
+\]
+The integral is holomorphic for \(|\Ima y|<1\). On the real axis it is convolution of a nonzero \(L^1\) function with \((1+x^2)^{-1}\), whose Fourier transform \(\pi e^{-|\xi|}\) is nowhere zero. It cannot vanish on the whole positive half-line. Take a real nonnegative smooth unit-mass test \(b\) sufficiently concentrated near a positive \(y\) where the scalar product is nonzero. Then \(PA_bv\ne0\). Some fixed sufficiently large smooth cutoff has \(M_\eta PA_bv\ne0\), since expanding cutoffs converge strongly to the identity. Yet \(Q_Xv=0\) for every \(X\). This disproves even strong convergence to the stated operator.
+
+The scalar trace assertion (11.2.1.5) would require a separate proof controlling the trace of the missing term after cutoff. The operator counterexample by itself settles (11.2.1.4). Restricting the domain to \(\G\) changes which trace and which diagonal kernel need to be compared on p.~520.
+
+\pagepart{What the global comparison would have to establish}{sec:missing}
+\source{Section 12.3 and Theorem 12.4.1.1, p.~514. Proof of Theorem 12.5.1.1, p.~520.}
+
+Let \(G_\alpha(b)\) denote the proposed regularized global diagonal integral. The spectral evaluation on p.~520, equation (12.5.1.4), is \(G_\alpha(b)=-Z_\alpha(b)\) in the rational component. Grant this evaluation in full. Page 520 also needs
+\begin{equation}
+                    G_\alpha(b)=W(b)-P(b). \label{eq:required}
+\end{equation}
+It is this second evaluation of the \emph{same} trace that fails to follow.
+
+Page 520 first enlarges \(S\) until all finite places outside \(S\) have residue norms exceeding the support bound. Their proposed prime sums are then zero, since \(b(0)=0\). For the example in \S\ref{sec:shell} this larger \(S\) would include \(2\). Equation (11.3.1.4), p.~494, defines a difference of kernels. Telescoping finite differences still requires a limit argument to give an infinite sum of regularized diagonal integrals. Vanishing of the proposed prime sums leaves open the identification of the remaining global kernel with the \(S\)-local operator. Section 12.3, assigned that identification, contains only a heading and a footnote to insert the section. Equations (12.4.1.1)--(12.4.1.3) on p.~514 concern a two-cutoff kernel on the \(S\)-idele class group \(J_{F,S}\). After division by its own norm-one volume the claimed diagonal asymptotic is
+\[
+          W_{F,S}(\phi)+\phi(1)\log(\Lambda\Lambda')+o(1).
+\]
+The logarithmic term is zero for our tests. The two global pole terms \(P(b)\) are strictly positive for a nonnegative nonzero \(b\). Even a proof of this \(S\)-local asymptotic supplies neither the change of kernel and domain nor the subtraction of \(P(b)\) in \eqref{eq:required}. The original semilocal calculation appears in Connes, \S VII, Theorem 4 \cite{connes}.
+
+\step{The arithmetic content of the missing equality.}
+Subtract the classical explicit formula \(W=P-Z_{\rm all}\) from the proposed formula. The entire discrepancy is
+\begin{equation}
+  P(b)-Z_\alpha(b)-W(b)
+       =\sum_{|\Rea\lambda_\rho|\ge\alpha}m_\rho B_b(\lambda_\rho).
+       \label{eq:residual}
+\end{equation}
+For each fixed \(\alpha>0\), vanishing for every allowed radial test is equivalent to the absence of every zero in this last sum, including zeros on the two edges.
+
+To prove the nontrivial direction, translate a fixed test to \(b_y(x)=b(x-y)\), \(y\ge0\), which is still admissible. If the discrepancy vanishes for all tests, its Laplace transform in \(y\) gives, initially for \(\Rea z>1/2\),
+\begin{equation}
+        0=\sum_{|\Rea\lambda_\rho|\ge\alpha}
+                 \frac{m_\rho B_b(\lambda_\rho)}{z-\lambda_\rho}.
+        \label{eq:residues}
+\end{equation}
+Here \(B_{b_y}(\lambda)=e^{y\lambda}B_b(\lambda)\). Integration by parts gives rapid vertical decay of \(B_b\), uniformly on the closed critical strip in shifted coordinates. The classical zero count \(N(T)=O(T\log(2+T))\) justifies termwise integration and gives normal convergence off the displayed poles \cite{bombieri}. If an omitted zero \(\lambda_0\) existed, take \(b(x)=e^{-i(\Ima\lambda_0)x}h(x)\) for a nonzero nonnegative \(h\in C_c^\infty((0,\infty))\). Then \(B_b(\lambda_0)>0\), giving a nonzero residue in \eqref{eq:residues}. This contradicts meromorphic continuation of zero. The converse follows from the empty sum. Taking any sequence \(\alpha\downarrow0\) gives exactly RH for \(\zeta\). This argument uses only tests supported where \(|g|>1\).
+
+\pagepart{The main formula has a separate normalization counterexample}{sec:volume}
+\source{Theorem 12.5.1.1, p.~519, (A.3.2.1), p.~560, and (B.4.4.16), p.~623.}
+
+Theorem 12.5.1.1 as printed can be disproved without deciding anything about zero locations within the critical strip. Denote the global measure in its Mellin transform by \(\bar\mu\) and let \(V_F=\bar\mu_1(C_F^1)\). On radial functions the global measure in log norm is \(V_F\,dx\). With all Mellin transforms expressed using \(dx\), let \(Z_{F,\alpha}\) and \(Z_{F,\rm all}\) be the analogues of the sums on p.~1 for the Dedekind zeta function of \(F\). Integration over \(C_F^1\) annihilates every nontrivial compact character. For totally real fields the local side \(W_F\) has the same coefficients on pp.~519 and 623. Thus the two statements, in a common notation, read
+\begin{align}
+ W_F(b)&=P(b)-Z_{F,\rm all}(b)
+      &&\text{(classical formula, p.~623)},\label{eq:fullfield}\\
+ W_F(b)&=V_F\bigl(P(b)-Z_{F,\alpha}(b)\bigr)
+      &&\text{(main theorem, p.~519)}.\label{eq:claimedfield}
+\end{align}
+The difference comes from the explicit divisor \(V_F\) attached to every global Mellin term on p.~623, which is absent on p.~519.
+
+\step{A field and test distinguishing the two sides.}
+Page 560 sets
+\[
+ V_F=\frac{2^{r_1}(2\pi)^{r_2}h_FR_F}{w_F\sqrt{|d_F|}} .
+\]
+For \(\Q(\sqrt5)\), \(r_1=2\), \(r_2=0\), \(h_F=1\), \(w_F=2\), \(d_F=5\) and \(R_F=\log((1+\sqrt5)/2)\). Hence \(V_F=2\log((1+\sqrt5)/2)/\sqrt5\simeq0.430409\) \cite{field}. Take nonzero nonnegative \(b\) supported compactly in \((\log(5/4),\log(3/2))\). Every finite local contribution vanishes because the local norm is an integral power of an integer \(q_v\ge2\). At both real places the integrand is nonnegative, positive on an open set and supported away from the singularity. Therefore \(W_F(b)>0\). Taking the allowed \(\alpha=1/2\) includes every nontrivial Dedekind zero in the open strip. Equations \eqref{eq:fullfield} and \eqref{eq:claimedfield} would give \(W_F(b)=V_FW_F(b)\), a contradiction.
+
+The width quantifier is stated on p.~27. Even if one restricts it to small positive widths, the wrong normalization remains detectable. Apply the translated-test argument of \S\ref{sec:missing} to the difference of \eqref{eq:fullfield} and \eqref{eq:claimedfield}, using the Dedekind zero count for this fixed field. At \(z=1/2\), the pole term has residue \((1-V_F)B_b(1/2)\), up to the common sign of the subtraction. No shifted nontrivial zero is at \(1/2\).
+
+\step{What changing the measure achieves.}
+Divide every global Mellin transform on p.~519 by \(V_F\), or integrate there using \(\bar\mu/V_F\). This restores the familiar formula at full width. Over \(\Q\) the volume is already one, and \S\ref{sec:missing} shows exactly what remains at smaller widths. Thus the normalization error is repairable and logically independent of the global trace comparison.
+
+\pagepart{The claimed consequence in Chapter 13 fails its own tests}{sec:last}
+\source{Theorem 13.3.1.1, (13.3.1.1)--(13.3.1.5), p.~522. Compare (B.4.4.16), p.~623.}
+
+The formula on p.~522 changes three ingredients. It sums only over the critical line, caps each multiplicity at \([F:\Q]\), and assigns coefficient \(1\) to the real-place integral. The corresponding coefficient on pp.~519 and 623 is \(1/2\). The extra moment conditions in (13.3.1.2) might conceivably annihilate the discrepancy. The following test proves that they do not.
+
+Take \(F=\Q\). For a radial test the moment conditions reduce to \(\int b=0\). Indeed, integration kills the characters nontrivial on \(C_\Q^1\). For a norm character the factor at the evaluation point in (13.3.1.2) is one and only the zeroth moment is imposed. For \(x=\log |g|>0\), away from the singular point, the real-place distribution with the classical coefficient has density
+\[
+ k_\infty(x)=\tfrac12 e^{x/2}\!
+       \left(\frac1{e^x-1}+\frac1{e^x+1}\right)
+      =\frac{e^{-x/2}}{1-e^{-2x}}=\sum_{n\ge0}e^{-\beta_n x},
+ \qquad \beta_n=\tfrac12+2n .
+\]
+The two summands in parentheses come from positive and negative real ideles. The finite coefficients on pp.~522 and 623 agree over \(\Q\). Subtraction of the classical formula from the claimed one would therefore give, for every admissible radial \(b\),
+\begin{equation}
+       Z_{\rm all}(b)-Z_{\rm capped,line}(b)
+            =W_\infty(b)=\int b(x)k_\infty(x)\dd x .
+       \label{eq:last}
+\end{equation}
+
+Choose \(0\le h\in C_c^\infty((0,\infty))\), \(h\ne0\), and set \(b=h'\). Each translate \(b_y\), \(y\ge0\), satisfies all the moments and is supported away from zero. Take the Laplace transform of \eqref{eq:last} in \(y\), initially for \(\Rea z>1/2\). By the calculation of \S\ref{sec:missing}, the possible poles on the left are shifted nontrivial zeta zeros. That side is holomorphic near \(z=-1/2\). The right side is
+\[
+         \sum_{n\ge0}\frac{B_b(-\beta_n)}{z+\beta_n}.
+\]
+The series is normally convergent away from its poles since the support of \(h\) is bounded away from zero. At \(-1/2\) its residue is
+\(B_{h'}(-1/2)=\tfrac12 B_h(-1/2)>0\).
+The two meromorphic functions cannot agree. This contradicts the printed theorem on its stated test space, independently of RH and of any conjecture about simple zeros.
+
+\step{What correcting the coefficient would leave.}
+With the real coefficient restored, \eqref{eq:last} would instead require \(Z_{\rm all}=Z_{\rm capped,line}\) on the derivative tests. At each \(\lambda\ne0\) their Mellin transforms are \(B_{h'}(\lambda)=-\lambda B_h(\lambda)\), so translated tests can still detect a missing multiplicity at that \(\lambda\). The corrected assertion over \(\Q\) would require both the absence of off-line zeros and simplicity at every noncentral zero. Theorem 12.5.1.1 counts full multiplicities even on the line and supplies no such simplicity assertion.
+
+\pagepart{Why keeping finite levels or changing the width does not finish the proof}{sec:limits}
+\source{The Paley--Wiener spaces on pp.~351--353 and 487--489, and their use on pp.~495--496.}
+
+\step{A coefficient is lost in the actual union of levels.}
+The zeroth Fourier coefficient of the unshifted one-prime periodization in \S\ref{sec:repair} is proportional, after the half-shift, to \(\ell(u)=\int e^{-ax}u(x)\,dx\), \(a=1/2\). It makes sense on each of the following tests. Choose a real even Schwartz function \(h\) with \(\widehat h\in C_c^\infty(\R)\), \(h(0)\ne0\), and put \(f=D_t(D_t+1)h\). One has \(f(0)=\widehat f(0)=0\), by differentiation and integration by parts, and \(\widehat f\) has compact support. Use the standard finite factors \(\ind_{\Z_p}\) and take \(S=S'=\{\infty\}\). Put
+\[
+ H_h(x)=\sum_{n\ne0}h(ne^x),\qquad
+ \theta_f(x)=\sum_{n\ne0} f(ne^x)=\partial_x(\partial_x+1)H_h(x).
+\]
+At sufficiently negative \(x\), Poisson summation gives exactly \(H_h(x)=e^{-x}\widehat h(0)-h(0)\), with Fourier convention \(e^{-2\pi it\xi}\). At \(+\infty\), \(H_h\) and its derivatives decay faster than every \(e^{-Nx}\). Hence
+\(\int\theta_f(x)\,dx=[(\partial_x+1)H_h]_{-\infty}^{+\infty}=h(0)\).
+The shifted test \(u=e^{ax}\theta_f\) lies in a genuine finite level by compact Fourier support. Dilating \(f\) to \(f(e^Lt)\) expands that support by \(e^L\) and gives level vectors
+\[
+ u_L(x)=e^{-aL}u(x+L),\qquad \ell(u_L)=h(0),\qquad
+ \|u_L\|_{\alpha,s}\le C_s(1+L)^{s/2}e^{-(a-\alpha)L}\|u\|_{\alpha,s}.
+\]
+On each fixed level these tests have a common left support bound, so Cauchy--Schwarz bounds \(\ell\) there. For \(0<\alpha<a\), the norms of \(u_L\) tend to zero while their coefficient stays fixed. Thus no bound holds uniformly through the levels in this completion.
+
+\step{Positive width does not remove the projection obstruction.}
+Consider the proposed variant of \S\ref{sec:pw} in \(H_{\alpha,0}\) with \(0<\alpha<1/2\). Set \(\kappa=2\alpha\). In this space the zero-evaluation vector is \(v=e^{-i\gamma x}e^{-\kappa|x|}\). Translate a nonzero rapidly decaying shifted theta test \(u\) so that it is nonzero somewhere on \(x>0\). Write \(F(x)=u(x)e^{i\gamma x}e^{\kappa|x|}\), which is integrable. Then \(e^{i\gamma y}\langle u,U_yv\rangle=(F*e^{-\kappa|\cdot|})(y)\). Applying \(-d^2/dy^2+\kappa^2\) gives \(2\kappa F(y)\) in distributions. The convolution cannot vanish on the whole positive half-line. A bump there produces \(M_\eta PA_bv\ne0\) as in \S\ref{sec:pw}. Thus the omitted operator term persists even in a positive-width space with Sobolev exponent zero.
+
+\step{Extent of the salvage.}
+One can say exactly how far a repair of the spectral trace would reach. Suppose the quotient action \(C_b=(1-P)A_b(1-P)\) is trace class with trace \(Z_\alpha(b)\). Invariance gives \((1-P)A_b=C_b\). For a smooth expanding compact cutoff \(0\le\eta\le1\), the smooth compact kernel of \(M_\eta A_b\) has trace \(b(0)\int\eta=0\), by integration of its diagonal. This trace calculation is valid in the weighted space by restricting to a compact interval containing the kernel support, where the norm is equivalent to ordinary \(L^2\). Since \(M_\eta C_b\to C_b\) in trace norm, \(\lim\Tr(M_\eta PA_b)=-Z_\alpha(b)\). This argument recovers the first evaluation on p.~520 from the quotient trace alone.
+
+For the ordinary zeta function at \(s=0\) and \(0<\alpha<1/2\), the companion audit constructs this quotient trace in a Hardy space on the strip \cite[\S 6]{companion}. The unshifted one-prime trace and the deduction from a narrow-strip identity to RH also survive. A proof still needs an independent geometric evaluation \eqref{eq:required} for the same global operator, with both pole terms and justified cutoff limits. The calculations above explain why the manuscript and these repairs do not give that evaluation. Whether a different global construction can give it remains open.
+
+\clearpage
+\appendix
+\section{Additional errors in the passage between spaces}\label{sec:earlier}
+
+\step{The finite-place retraction need not descend to theta functions (pp.~71--73, 231).}
+For \(S=\{\infty\}\), the retraction on raw adelic tests is the identity at the real place and, on a finite factor \(v\), sends \(v\) to \(\ell(v)\ind_{\widehat\Z}\) for some linear functional with \(\ell(\ind_{\widehat\Z})=1\). Page 231 asserts that this preserves the kernel of the rational theta summation map \(\Phi\). Take \(d\in C_c^\infty((0.9,1.1))\) with \(d(1)=1\), \(f=d\otimes\ind_{\widehat\Z}\), and, for a prime \(p\), \(f_p(X)=f(X/p)\) on the adeles. Then \(\Phi f=\Phi f_p\) by the bijection \(q\mapsto q/p\) of \(\Q^\times\). If the retraction descended, equality of their images on \((t,1_f)\) would say
+\[
+  \Theta_d(t)=C\,\Theta_d(t/p)\quad(t>0),\qquad
+  \Theta_d(t)=\sum_{n\in\Z\setminus\{0\}}d(nt),\qquad
+  C=\ell(\ind_{p\widehat\Z}).
+\]
+At \(t=p\) this says \(0=C\). At \(t=1\) it then says \(1=0\). No choice of the functional used in the printed retraction works. This disproves the descent argument on p.~231. The abstract possibility of another embedding is a separate question.
+
+\step{The approximate units project onto decreasing spaces (p.~426).}
+In Theorem 9.3.2.6 the range of \(P_T\) is the intersection of the kernels of the zero evaluations and their derivatives at heights \(\le T\). These spaces shrink as \(T\) increases. For an explicit test on \(G=\R_{>0}\) take in log coordinates minus the derivative of \(g(x)=(4\pi)^{-1/2}e^{-x^2/4}\). Its bilateral Laplace transform is \(z e^{z^2}\), with just one simple zero, at \(0\). Take exponent zero and a symmetric strip of positive width. Evaluation \(h\mapsto\int h\) is continuous on the weighted space and is nonzero on \(g\). For every \(T>0\) the projection in (9.3.2.10) is the same projection onto the proper subspace \(\ker\delta_0\). Such projections cannot converge strongly to the identity as asserted. In general, decreasing orthogonal projections converge to the projection onto the intersection.
+
+\step{The biorthogonal vectors have no uniform bound (pp.~444, 451).}
+For \(s=2\) the rational dual vectors for simple critical-line zeros include \(\eta_\gamma(x)=e^{i\gamma x}\) in \(L^2((1+x^2)^{-1}dx)\). A positive proportion of the \(\asymp T\log T\) zeros up to height \(T\) are simple and on the line \cite{conrey}. A fixed minimum spacing would permit only \(O(T)\) such ordinates. Thus there are distinct pairs with \(|\gamma-\gamma'|\to0\). For these pairs
+\[
+ \|\eta_\gamma-\eta_{\gamma'}\|^2=2\pi(1-e^{-|\gamma-\gamma'|})\longrightarrow0 .
+\]
+A biorthogonal functional taking values \(1\) and \(0\) on the pair has norm at least \(1/\|\eta_\gamma-\eta_{\gamma'}\|\). Each \(\|\eta_\gamma\|=\sqrt{\pi}\). Hence the uniform bound on the products of the two norms used in (10.3.1.18) is false. Rescaling a dual pair preserves this product. The trace class conclusion would require another estimate.
+
+\begingroup
+\small
+\renewcommand{\refname}{Sources}
+\begin{thebibliography}{9}\setlength{\itemsep}{2pt}
+\bibitem{masullo} Alessandro Maria Masullo, \emph{The Music of the Primes}, supplied 940-page manuscript. PDF SHA-256\newline
+{\ttfamily e039d3f6cf0a4b14f03c7edb85097752dd65c0a2fe543c76fe992be234f97bf5}.
+\bibitem{connes} Alain Connes, \href{https://arxiv.org/abs/math/9811068}{\emph{Trace formula in noncommutative geometry and the zeros of the Riemann zeta function}}, Selecta Math. (N.S.) \textbf{5} (1999), 29--106, \S VII, Theorem 4.
+\bibitem{bombieri} Enrico Bombieri, \href{https://www.claymath.org/wp-content/uploads/2022/05/riemann.pdf}{\emph{Problems of the Millennium: The Riemann Hypothesis}}, Clay Mathematics Institute. Classical zeta background and explicit formula.
+\bibitem{field} The LMFDB Collaboration, \href{https://www.lmfdb.org/NumberField/2.2.5.1}{\emph{Number field \(2.2.5.1\), \(\Q(\sqrt5)\)}}. Field invariants for \S\ref{sec:volume}.
+\bibitem{conrey} J.~B. Conrey, \href{https://aimath.org/~kaur/publications/24.pdf}{\emph{More than two fifths of the zeros of the Riemann zeta function are on the critical line}}, J. reine angew. Math. \textbf{399} (1989), 1--26.
+\bibitem{companion} \emph{An adversarial review of The Music of the Primes}, companion technical audit, 20 November 2026. Section 6 gives the rational open-strip spectral construction.
+\end{thebibliography}
+\endgroup
+\end{document}
