@@ -1,6 +1,6 @@
 # A proof review of *The Music of the Primes*
 
-This repository examines the proposed proof of the Riemann hypothesis in Alessandro Maria Masullo’s 940-page manuscript. The reports were prepared with Codex, using two GPT Pro reviews as starting points. [Manuscript PDF](literature/the-music-of-the-primes.pdf)
+This repository examines the proposed proof of the Riemann hypothesis in Alessandro Maria Masullo’s 940-page manuscript. The reports, and this repository, were prepared with Codex GPT Astra 6.2, using two GPT Pro reviews as starting points. [Manuscript PDF](literature/the-music-of-the-primes.pdf) The prompting was done by Eric Naslund, the repository owner.
 
 The decisive counterexample is on manuscript pp. 495–496. For a smooth test at the prime 2, Theorem 11.3.2.1 predicts a contribution of $\log 2$, while the cutoff in its proof makes the integral zero. A corrected one-prime quotient does give $\log 2$. The missing step on p. 520 is to identify the global trace with the sum of local terms after subtracting the two pole contributions. For the Riemann zeta function, establishing that identity for arbitrarily narrow strips would imply the Riemann hypothesis.
 
