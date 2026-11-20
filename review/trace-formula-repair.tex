@@ -1,0 +1,385 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,mathtools,microtype,xcolor,fancyhdr}
+\usepackage[margin=.92in,top=.87in,bottom=.86in,headheight=14pt,headsep=15pt]{geometry}
+\usepackage[unicode,colorlinks=true,linkcolor=blue!45!black,urlcolor=blue!45!black,citecolor=blue!45!black]{hyperref}
+\hypersetup{pdftitle={An attempted repair of the prime trace formula},pdfsubject={A full-width identity, its restriction kernel, and a remaining prime estimate}}
+\definecolor{ink}{HTML}{18354A}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt minus 1pt}
+\setlength{\emergencystretch}{1.2em}
+\setlength{\abovedisplayskip}{8pt plus 1pt minus 2pt}
+\setlength{\belowdisplayskip}{8pt plus 1pt minus 2pt}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small\itshape An attempted repair of the prime trace formula}
+\fancyhead[R]{\small\itshape The Music of the Primes}
+\fancyfoot[C]{\small\thepage}\renewcommand{\headrulewidth}{.3pt}
+\newcommand{\R}{\mathbb R}\newcommand{\Q}{\mathbb Q}\newcommand{\C}{\mathbb C}
+\newcommand{\Z}{\mathbb Z}\newcommand{\G}{\mathcal G}\newcommand{\Ncal}{\mathcal N}
+\newcommand{\re}{\operatorname{Re}}\newcommand{\im}{\operatorname{Im}}
+\newcommand{\Tr}{\operatorname{Tr}}\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\dd}{\,d}\newcommand{\id}{\mathrm{Id}}
+\newcommand{\step}[1]{\par\smallskip{\color{ink}\bfseries #1}\enspace}
+\newcommand{\partpage}[2]{\clearpage\section{#1}\label{#2}}
+\begin{document}
+\thispagestyle{plain}
+{\color{ink}\LARGE\bfseries An attempted repair of the prime trace formula\par}
+\smallskip
+{\large A full-width identity, its restriction kernel, and a remaining prime estimate\par}
+\medskip
+
+On p.~520 of Alessandro Maria Masullo's \emph{The Music of the Primes}, the proposed proof of the Riemann hypothesis (RH) needs two evaluations of the same global trace. One counts the zeros in a freely chosen open strip. The other uses prime contributions, an archimedean term, and the two poles. For the ordinary Riemann zeta function, this note matches the full-width trace to the prime terms by a contour integral over the complete divisor. It then computes the change when the strip is narrowed. This gives a proof of a corrected identity. An independent evaluation of the narrow-width trace that would imply RH remains open.
+
+\step{The corrected formula.}
+Write \(A=1/2\), \(x=\log |g|\), and use Haar mass one on the compact norm-one idele classes of \(\Q\). Work in the component on which they act trivially. Each \(b\in C_c^\infty((0,\infty))\) gives a test \(g\mapsto b(\log|g|)\) admissible on pp.~495 and 519. Set
+\[
+ B_b(z)=\int_\R b(x)e^{zx}\dd x,\qquad P(b)=B_b(A)+B_b(-A),
+ \qquad \lambda_\rho=\rho-A .
+\]
+Let \(W(b)\) be the local side of the classical explicit formula. Let \(G_d(b)\) be the regularized trace on the manuscript's closed, critically shifted theta space at strip half-width \(d\). We use Sobolev exponent zero, as in the overview on manuscript p.~27, and replace the shell calculation of Chapter 11. The constructions below give a bounded restriction map \(R_{d,A}\) between two Hilbert quotients and a trace class convolution action \(A_b\) on its kernel. For \(0<d<A\),
+\begin{equation}
+ \boxed{\displaystyle
+   G_A(b)=W(b)-P(b),\qquad
+   G_d(b)=W(b)-P(b)+\Tr\!\left(A_b\bigm|_{\ker R_{d,A}}\right).}
+ \label{eq:main}
+\end{equation}
+The last trace counts exactly the zeros with \(|\re\lambda_\rho|\ge d\), with their multiplicities. The kernel has a concrete interpretation. If an off-line zero exists, an explicit integral of translated theta functions gives a vector that survives in the full-width quotient and disappears in a narrower one. Section~\ref{sec:vectors} computes its approximation error in both norms. Section~\ref{sec:primefamily} builds a trace class family for the geometric side directly from the local data and tests its convolution law.
+
+\step{Two attempts to remove the correction.}
+On the operator side, the width restriction has dense range. A two-dimensional example built from genuine theta tests shows how restriction can nevertheless lose a trace. On the prime side, summing the higher prime powers leaves one centered sum over primes. Section~\ref{sec:criterion} gives a single fixed positive smooth test for which boundedness of that sum under translation is equivalent to RH. The estimates obtained here prove the full-width identity and fast convergence as \(d\uparrow A\). They do not yield boundedness of the centered sum for all translates.
+
+{\small The page references are to the supplied 940-page manuscript \cite{ms}. The rational trivial component is necessary for the proposed all-number-field theorem. Section~\ref{sec:euler} describes the extent of the calculation for Hecke characters.}
+
+\partpage{Reconstructing the local side and both pole terms}{sec:local}
+A prime \(p\) gives a circle of length \(c=\log p\). On \(L^2(\R/c\Z)\) write \(V_y h(x)=h(x-y)\). Incorporate the critical half-power in the convolution itself by setting
+\[
+ L_p(b)=\int b(y)e^{-y/2}V_y\dd y .
+\]
+Fourier modes diagonalize \(L_p(b)\). Their eigenvalues are \(B_b(-A-2\pi i n/c)\), rapidly decreasing in \(|n|\) for each fixed \(p\). Periodization or Poisson summation gives the exact trace
+\[
+ \Tr L_p(b)=c\sum_{k\in\Z}e^{-kc/2}b(kc)
+            =\log p\sum_{k\ge1}p^{-k/2}b(k\log p).
+\]
+This retains the half-power that differs between (11.3.2.1) and (11.3.2.5). For the test of height one at norm \(2\), supported in \((1.9,2.1)\) in the norm variable, the \(2\)-adic value is \(\log 2/\sqrt2\). Only finitely many primes contribute to the scalar sum for a fixed \(b\). For \(x>0\), adding the positive and negative real ideles gives the density
+\[
+ k_\infty(x)=\frac{e^{x/2}}{2}
+    \left(\frac1{e^x-1}+\frac1{e^x+1}\right)
+    =\sum_{j\ge0}e^{-(2j+1/2)x}.
+\]
+Thus \(W(b)=\sum_p\Tr L_p(b)+\int_0^\infty b(x)k_\infty(x)\,dx\). The normalization agrees with the rational case of (B.4.4.16) on p.~623.
+
+\step{An independent global scalar calculation.}
+For \(c_0>1\), the logarithmic derivative of the Euler product and Fourier inversion give
+\[
+ \frac1{2\pi i}\int_{\re s=c_0}-\frac{\zeta'}{\zeta}(s)B_b(s-A)\dd s
+      =\sum_{n\ge2}\frac{\Lambda(n)}{\sqrt n}b(\log n)=\sum_p\Tr L_p(b).
+\]
+Here \(\Lambda(p^k)=\log p\), and \(\Lambda(n)=0\) otherwise. Move the line to \(\re s=-2M-1\). The pole of \(\zeta\) at \(1\) contributes \(B_b(A)\). Its nontrivial zeros contribute \(-m_\rho B_b(\lambda_\rho)\), and its trivial zeros at \(-2j\), \(j\ge1\), contribute \(-B_b(-2j-A)\).
+
+For details of the limits, let \(\supp b\subset[u,v]\) with \(u>0\). On the left line the functional equation and the gamma logarithmic derivative give \(\zeta'/\zeta(s)=O(\log(2+M+|\im s|))\) uniformly for \(M\ge1\). Integration by parts bounds \(B_b(s-A)\) there by \(C_{b,N} e^{-(2M+1+A)u}|s-A|^{-N}\). For fixed \(M\) the horizontal sides can be taken at heights in \([n,n+1]\) and their negatives at distance at least \(n^{-2}\) from zero ordinates of height at most \(3n\). The zero count \(O(n\log n)\) leaves room for this choice. The logarithmic derivative of the genus-one product for \(\xi\) is polynomially bounded on these sides by splitting at \(|\rho|=2|s|\). Rapid decay of \(B_b\) removes the horizontal integrals. These classical zeta facts are unconditional \cite{bombieri}. In \(W_\infty\) the \(j\ge1\) terms now cancel the trivial zeros. The remaining \(j=0\) gives the second pole term \(B_b(-A)\). This proves
+\begin{equation}
+            W(b)-P(b)=-\sum_\rho m_\rho B_b(\lambda_\rho).
+            \label{eq:full}
+\end{equation}
+The sum runs over distinct nontrivial zeros and converges absolutely.
+
+\partpage{A full-width Hilbert quotient}{sec:space}
+For \(0<d\le A\) set \(H_d=L^2(\R,e^{2d|x|}dx)\) and \(U_yh(x)=h(x-y)\). Let \(\G_d\) be the closure of the rational radial theta tests from the manuscript, multiplied by \(e^{x/2}\). The underlying adelic Schwartz tests satisfy \(f(0)=\widehat f(0)=0\). Define
+\[
+ Q_d=H_d/\G_d,\qquad A_b=\int b(y)U_y\dd y .
+\]
+The subspace is translation invariant, so \(A_b\) acts on \(Q_d\). We use the following description up to and including \(d=A\). It also specifies the spaces needed to interpret \(\ker R_{d,A}\) in \eqref{eq:main}.
+
+\step{Theta closure in Mellin coordinates.}
+The transform \(F(z)=\int u(x)e^{zx}dx\) identifies \(H_d\), up to equivalent norm, with the Hardy space on \(S_d=\{|\re z|<d\}\). The transform of \(\G_d\) consists exactly of the functions vanishing to order at least \(m_\rho\) at each \(\lambda_\rho\in S_d\). This statement imposes no vanishing condition on the boundary lines.
+
+Here are the details needed for the endpoint \(d=A\). Using the equivalent weight \(2\cosh(2dx)\), Plancherel gives the sum of the two boundary norms with measure \(dt/(2\pi)\). Put \(k=\pi/(4d)\) and \(\varphi(z)=-i\tan(kz)\). The disk Hardy space pulls back to this Mellin space under \(f\mapsto\sqrt{\varphi'}(f\circ\varphi)\). Both have reproducing kernel \(k\sec(k(z+\bar w))\), by integrating \(e^{(z+\bar w)x}/(2\cosh(2dx))\). This proves the identification including surjectivity, since kernel vectors have dense span. Denote the map to the disk by \(J_d\).
+
+Unfolding rational theta tests gives the factor \(\zeta(1/2+z)\). The real local integral is holomorphic at the nontrivial zeros, and exceptional finite factors divided by the standard factor are Laurent polynomials in \(p^{-(1/2+z)}\), by local constancy at zero and compact support. Continuity of interior jet evaluations passes the vanishing to the closure. Conversely the closure contains the test
+\begin{equation}
+ \begin{gathered}
+ h(x)=e^{x/2}\sum_{n\ne0}f(ne^x),\qquad f(t)=D_t(D_t+1)e^{-\pi t^2},\quad D_t=t\,d/dt, \\
+ F_0(z)=\mathcal Mh(z)=2\xi(1/2+z).
+ \end{gathered}
+ \label{eq:h}
+\end{equation}
+Indeed \(f(0)=\widehat f(0)=0\), Poisson summation gives decay faster than every exponential at both ends, and unfolding and integration by parts give \eqref{eq:h}. Here \(2\xi(s)=s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s)\).
+
+In disk coordinates the closure is invariant under multiplication by the disk coordinate. To see this, \(\varphi(z)e^{\varepsilon z^2}\) has an inverse Fourier kernel decaying as \(O_\varepsilon(e^{-(d+\eta)|y|})\) for \(0<\eta<d\), by shifting the contour. Its action is an integral of translations, since \(\|U_y\|\le e^{d|y|}\). As \(\varepsilon\downarrow0\) the multipliers converge strongly on both boundary lines to \(\varphi\). Beurling's theorem gives the disk subspace \(I H^2\) for an inner function \(I\) \cite{beurling,duren}. Interior vanishing gives all the claimed zeros of \(I\). The vector \(J_dF_0\) bounds their orders from above and excludes other interior zeros.
+
+\step{No singular inner divisor is hidden at the ends of the strip.}
+On each finite boundary arc away from \(+1,-1\), \(J_dF_0\) extends holomorphically. The singular measure of an inner divisor can be supported there only at its isolated boundary zeros, by local inner--outer factorization. An atom at such a zero is impossible. Along its radius an atom forces decay bounded by \(C(1-r^2)^{-1/2}\exp[-c(1+r)/(1-r)]\), contradicting a zero of finite order. The only remaining possible support points are the two ends.
+
+\clearpage
+\step{The two infinite ends.} An atom at \(+1\) would force \(\log|\xi(1/2+iT)|\le-c e^{2kT}+O(1)\) for all large \(T\). Indeed \(\varphi(iT)=\tanh(kT)\) and the square root of \(|\varphi'(iT)|\) cancels the pointwise Hardy factor \((1-|\varphi(iT)|^2)^{-1/2}\). To exclude this bound, select \(T_n\in[n,n+1]\) at distance at least \(n^{-2}\) from the ordinates of all shifted zeros of modulus \(\le4n\), as in \S\ref{sec:local}. In the genus-one product for \(\xi(1/2+z)\), the corresponding factors at \(z=iT_n\) have \(|1-iT_n/\lambda_\rho|\gg n^{-3}\). Their logarithms, including the linear exponential factors, total at least \(-O(n\log^2 n)\), since \(\sum_{0<|\lambda_\rho|\le4n}m_\rho/|\lambda_\rho|=O(\log^2 n)\). The logarithms of the remaining factors have total absolute value \(O(n^2\sum_{|\lambda_\rho|>4n}m_\rho/|\lambda_\rho|^2)=O(n\log n)\). A central zero, if present in such a product, is separated as a finite power. This polynomial lower bound for the logarithm excludes the atom. Conjugation handles \(-1\). Consequently \(I\) is precisely the Blaschke product \(B_d\) of the interior zeros with multiplicity. The proof uses \(0<\re(1/2+z)<1\) only for the interior zeros and applies at \(d=A\).
+
+\step{Taking the quotient trace.}
+Use \(K_{B_d}=H^2\ominus B_d H^2\) in the disk norm. For zeros \(w_j=\varphi(\lambda_j)\), listed with multiplicity, let \(B_{j-1}\) be the product of the first \(j-1\) Blaschke factors. The vectors
+\[
+ e_j(w)=B_{j-1}(w)\frac{\sqrt{1-|w_j|^2}}{1-\bar w_jw}
+\]
+are an orthonormal basis, by successive decomposition \(K_{UV}=K_U\oplus U K_V\) and inner factorization of the limiting intersection. The multiplier for \(A_b\) is \(b_*=B_b\circ\varphi^{-1}\). The diagonal of its compression is \(B_b(\lambda_j)\) by harmonic reproduction. To justify summing it, \(\|b_*e_j\|^2\) is the harmonic-measure average of \(|B_b|^2\) on the two boundary lines of \(S_d\), as viewed from \(\lambda_j\). For \(\lambda_j=\sigma+i\gamma\), the two densities are
+\[
+ \frac{1}{4d}\frac{\sin\theta}{\cosh(\pi(t-\gamma)/(2d))\mp\cos\theta},
+ \qquad \theta=\frac{\pi(\sigma+d)}{2d}.
+\]
+These follow by mapping the strip to the upper half-plane. Their combined mass is one and their tails for \(|t-\gamma|\ge1\) decrease exponentially there, uniformly in \(\sigma\). Splitting at \(|t-\gamma|=|\gamma|/2\) and using the rapid decrease of \(B_b\) gives \(\|b_*e_j\|\ll_{b,d,N}(1+|\gamma|)^{-N}\) for every \(N\). These column norms are summable by the zero count. The rank-one column expansion proves trace class and gives
+\begin{equation}
+ \Tr(A_b|_{Q_d})=Z_d(b):=\sum_{|\re\lambda_\rho|<d}m_\rho B_b(\lambda_\rho).
+ \label{eq:qd}
+\end{equation}
+Bounded similarity of quotient actions preserves this trace in the original norm. See also the open-strip construction in the companion audit \cite[\S 6]{audit}.
+
+To recover the global cutoff trace in \eqref{eq:main}, take the original orthogonal projection \(P_d\) onto \(\G_d\). Invariance gives \((1-P_d)A_b=(1-P_d)A_b(1-P_d)\), a trace class operator of trace \(Z_d(b)\). For any smooth compact cutoff \(0\le\eta\le1\), \(M_\eta A_b\) has trace \(b(0)\int\eta(x)dx=0\). Its smooth kernel is supported in a compact rectangle, where equivalence with the unweighted norm gives the ordinary diagonal formula. Along cutoffs tending pointwise to one, \(M_\eta(1-P_d)A_b\to(1-P_d)A_b\) in trace norm. Therefore
+\[
+ G_d(b):=\lim_{\eta\to1}\Tr(M_\eta P_d A_b)=-Z_d(b).
+\]
+All nontrivial zeros satisfy \(|\re\lambda_\rho|<A\). With \eqref{eq:full} this gives \(G_A=W-P\), with a fixed global operator and both poles.
+
+\partpage{The term lost when the strip is narrowed}{sec:kernel}
+The inclusion \(H_A\hookrightarrow H_d\) is contractive and has dense range because it contains the compactly supported functions. It sends \(\G_A\) into \(\G_d\), since both closures use the same tests. Thus it induces a bounded, dense-range, translation-equivariant map
+\[
+ R_{d,A}:Q_A\longrightarrow Q_d,\qquad [u]_A\longmapsto [u]_d .
+\]
+One must determine its kernel before moving the trace from one width to another.
+
+In the disk model for the \emph{fixed full width} \(A\), factor \(B_A=B_{\rm in}B_{\rm out}\), using the zeros with \(|\re\lambda|<d\) and the remaining zeros, respectively. The characterization in \S\ref{sec:space} says that a representative goes to zero under restriction precisely when its Mellin transform has the full required jets at every inside zero. Equivalently its full-width disk transform belongs to \(B_{\rm in}H^2\), by Hardy factorization. Hence
+\begin{equation}
+ \Ncal_{d,A}:=\ker R_{d,A}
+ \simeq {B_{\rm in}H^2}/{B_AH^2}
+ \simeq H^2/B_{\rm out}H^2 .
+ \label{eq:block}
+\end{equation}
+Multiplication by \(B_{\rm in}\) implements the last equivalence, isometrically in disk norm. It intertwines multiplication by \(b_*\). The compression on \(K_{B_{\rm out}}\) is trace class, either by restriction of the full quotient action to its closed invariant subspace or by the column estimate in \S\ref{sec:space}. Applying the displayed basis there to this subproduct gives
+\[
+ \Tr(A_b|_{\Ncal_{d,A}})=
+       \sum_{|\re\lambda_\rho|\ge d}m_\rho B_b(\lambda_\rho).
+\]
+Together with \eqref{eq:qd} and the full-width calculation, this proves \eqref{eq:main}. The kernel is trivial exactly when the wider strip has no additional zero, including a zero on the edge of the smaller open strip. To see that vanishing of its trace for all tests would also exclude every omitted zero, translate the single test of \S\ref{sec:criterion}. The Laplace transform in the translation parameter has an isolated pole with nonzero residue at each omitted zero, by the argument in that section. Dense range of \(R_{d,A}\) alone gives no such conclusion.
+
+\step{How close the repaired comparison gets without RH.}
+There is unconditional quantitative agreement near full width. For every fixed test \(b\) as above and every \(L>0\),
+\begin{equation}
+ G_{A-\delta}(b)=W(b)-P(b)+O_{b,L}\bigl(e^{-L/\delta}\bigr)
+ \qquad(\delta\downarrow0).
+ \label{eq:flat}
+\end{equation}
+Indeed the classical zero-free region and the functional equation give
+\(\min(\re\rho,1-\re\rho)\ge c/\log(3+|\im\rho|)\) for an absolute \(c>0\). This follows, for example, from the explicit classical region of Mossinghoff, Trudgian and Yang, with the compact low-height part absorbed into \(c\) \cite{mty}. Thus each omitted zero has \(|\im\rho|\ge e^{c/\delta}-3\). Uniform vertical decay and the zero count bound the tail above \(T\) by \(O_{b,N}(T^{1-N}\log(2+T))\). Taking \(N>2+L/c\) proves \eqref{eq:flat}. For the translated test \(b_Y(x)=b(x-Y)\), \(Y\ge0\), the same bound acquires at most the factor \(e^{Y/2}\).
+
+This estimate controls the size of a possible correction near the outer lines. It gives no identity theorem in the width variable. Section~\ref{sec:example} exhibits a trace that is constant on an interval of widths and changes when the width crosses a zero.
+
+\partpage{A divided theta function tests injectivity directly}{sec:vectors}
+There is a way to see a possible lost mode on the manuscript's theta functions without using the Hardy factorization. Suppose \(\rho=1/2+\lambda\) is a zero of multiplicity \(m\), with \(0<\sigma=\re\lambda<A\). Reflection covers the other side. Use the particular theta function \(h\) in \eqref{eq:h}. Since \(F_0(\lambda)=0\), the two expressions
+\begin{equation}
+ v_\lambda(x)=-e^{-\lambda x}\int_{-\infty}^{x}e^{\lambda t}h(t)\dd t
+              = e^{-\lambda x}\int_x^\infty e^{\lambda t}h(t)\dd t
+ \label{eq:v}
+\end{equation}
+agree. The first at \(-\infty\) and the second at \(+\infty\) show that \(v_\lambda\) decays faster than every exponential. Its differential equation is \(v_\lambda'+\lambda v_\lambda=-h\), so its entire Mellin transform is \(F_0(z)/(z-\lambda)\). This has order of vanishing exactly \(m-1\) at \(\lambda\). The \((m-1)\)-st jet is continuous on \(H_A\), by weighted Cauchy--Schwarz, and annihilates \(\G_A\). Therefore \([v_\lambda]_A\ne0\).
+
+\step{The same approximation in the two norms.}
+For \(T>0\) put \(v_T=-\int_0^T e^{-\lambda t}U_t h\,dt\). The integral is a norm limit of linear combinations of actual translated theta tests in every \(H_d\). Direct substitution in \eqref{eq:v} gives the exact tail
+\begin{equation}
+          v_\lambda-v_T=e^{-\lambda T}U_T v_\lambda .
+          \label{eq:tail}
+\end{equation}
+For \(d<\sigma\) this tail has \(H_d\)-norm at most \(e^{-(\sigma-d)T}\|v_\lambda\|_{H_d}\). Hence \(v_\lambda\in\G_d\). In the original full-width norm, however,
+\[
+ e^{-2(A-\sigma)T}\|v_\lambda-v_T\|_{H_A}^2
+ =\int |v_\lambda(u)|^2 e^{2A(|u+T|-T)}\dd u
+ \ \longrightarrow\ \int |v_\lambda(u)|^2 e^{2Au}\dd u>0 .
+\]
+Dominated convergence uses \(|u+T|-T\le|u|\). The approximants diverge in this norm, and the continuous jet excludes any other sequence in \(\G_A\) approximating \(v_\lambda\) there. In the full quotient \eqref{eq:tail} also proves
+\(U_T[v_\lambda]_A=e^{\lambda T}[v_\lambda]_A\). The loss under restriction is an eigenvector with a specified translation rate.
+
+\step{At \(d=\sigma\).}
+Average \(v_t\) over \(0\le t\le T\). In the equivalent norm given by the two weights \(e^{\pm dx}\), the positive-weight error is the ordinary \(L^2\) average of the translates of \(e^{dx}v_\lambda\) with phase \(e^{-i(\im\lambda)t}\). Its Fourier multiplier tends to zero almost everywhere and is bounded by one. Plancherel gives convergence to zero. In the negative weight the additional factor \(e^{-2dt}\) bounds the error by \(O(1/T)\). Thus \(v_\lambda\in\G_d\) also at the edge, precisely as prescribed by the open strip in (12.5.1.3).
+
+If an off-line zero existed, this construction would supply the vector that a proof of injectivity would have to exclude. It does not presume the existence of such a zeta zero. The following example tests the same reasoning without any hypothesis about zeta zeros.
+
+\partpage{A width change that loses exactly two dimensions}{sec:example}
+A possible way to finish the proof would be to show that the traces depend analytically on the width, using analyticity on finite spans of translated tests. The following model tests this idea inside the admissible theta functions.
+
+Fix \(0<\beta<A\), and replace the cyclic generator \(h\) of \eqref{eq:h} by
+\[
+ h_\beta=(\partial_x^2-\beta^2)h,\qquad
+ \mathcal Mh_\beta(z)=(z^2-\beta^2)F_0(z).
+\]
+This is again a shifted rational theta test. Differentiation corresponds to applying \(D_t+1/2\) to the real Schwartz input, preserving both zero constant terms. Both \(h\) and \(h_\beta\) are real and even, by the functional equation for \(\xi\). The two real values \(F_0(\pm\beta)\) are nonzero. For \(0<s<1\) this follows directly from the positive alternating eta series and \(1-2^{1-s}<0\).
+
+In \(H_d\) let \(V_d\) and \(V_d^\beta\) be the closed spans of all translates of \(h\) and \(h_\beta\). We have \(V_d^\beta\subset V_d\), by difference quotients. The relative quotient and its convolution trace satisfy
+\[
+ \begin{array}{c|c|c}
+ \text{width}&\dim(V_d/V_d^\beta)&\Tr(A_b|_{V_d/V_d^\beta})\\ \hline
+ 0<d<\beta &0&0\\
+ \beta<d\le A&2&B_b(\beta)+B_b(-\beta).
+ \end{array}
+\]
+
+For \(d<\beta\), the fundamental solution \(K(x)=-e^{-\beta|x|}/(2\beta)\) of \(\partial_x^2-\beta^2\) satisfies \(\int |K(y)|e^{d|y|}dy<\infty\). Thus \(h=K*h_\beta\) is a norm limit of integrals of translates of \(h_\beta\), proving equality of the two spans.
+
+For \(d>\beta\), evaluation at \(\pm\beta\) is continuous and annihilates \(V_d^\beta\). On \(U_t h\) these functionals give \((e^{\beta t}F_0(\beta),e^{-\beta t}F_0(-\beta))\), which span \(\C^2\) as \(t\) varies. Conversely, \(w(t)=[U_t h]\) in the quotient is twice norm-differentiable and satisfies \(w''=\beta^2w\). All such \(w(t)\) lie in the span of \(w(0),w'(0)\), by the elementary solution of this vector-valued ODE. The quotient has dimension two and the two evaluations diagonalize its translation action. This proves the table.
+
+On a fixed finite independent span the Gram entries are real analytic in \(d\), by rapid decay, and its Gram matrix is invertible. After taking closures the trace in the table changes at \(\beta\) for any nonzero \(b\ge0\). A proof by analytic continuation of finite-dimensional traces would need a uniform estimate that excludes this behavior. The model uses a smaller choice of cyclic generators. Its added zeros are inserted by the factor \(z^2-\beta^2\). It demonstrates that Poisson symmetry, translation invariance and analyticity of finite Gram matrices are compatible with a strict loss under restriction.
+
+\partpage{Extending the repair to all admissible radial tests}{sec:two}
+Theorem 12.5.1.1 on p.~519 requires \(\phi(C_\Q^1)=0\). For a radial test this means \(b(0)=0\), and it allows support on both sides of zero or passing through it. Equations \eqref{eq:full} and \eqref{eq:main} extend to every \(b\in C_c^\infty(\R)\) with \(b(0)=0\).
+
+In this generality the finite part is
+\[
+ W_f(b)=\sum_{p,k\ge1}\frac{\log p}{p^{k/2}}
+         \{b(k\log p)+b(-k\log p)\}.
+\]
+Indeed at norm \(p^k>1\) the denominator \(|1-g|_p\) equals \(p^k\), and at norm \(p^{-k}<1\) it equals one. The unit contribution vanishes. At the real place the term is \(\int_\R b(x)k_\infty(|x|)dx\), absolutely convergent since \(b(0)=0\). Hence \(W\) is invariant under reflection, as are \(P\) and every \(Z_d\), the latter by the functional equation \(\xi(s)=\xi(1-s)\). It suffices to treat \(b_e(x)=(b(x)+b(-x))/2\).
+
+The even part vanishes to second order at the origin. Take an even \(\psi\in C_c^\infty((-2,2))\) equal to one on \([-1,1]\), and set \(r_\varepsilon(x)=b_e(x)\psi(x/\varepsilon)\). Then
+\[
+ \|r_\varepsilon\|_1=O_b(\varepsilon^3),\qquad
+ \|r_\varepsilon''\|_1=O_b(\varepsilon),\qquad
+ |B_{r_\varepsilon}(z)|\ll_b
+          \frac{\varepsilon}{1+|\im z|^2}\quad(|\re z|\le A,\ 0<\varepsilon<1).
+\]
+The last estimate uses two integrations by parts at large height. The zero count makes this bound summable over all zeros. The real-place error is \(O_b(\varepsilon^2)\) since \(k_\infty(x)=O(1/x)\) near zero. The finite part of \(r_\varepsilon\) vanishes for \(2\varepsilon<\log2\). Split \(b_e-r_\varepsilon\) into its two smooth, separated half-line pieces, apply \S\ref{sec:local} and reflection, and pass to the limit. The quotient trace computation and the cutoff identity in \S\ref{sec:space} apply to the original \(b\) directly. Thus the full-width and corrected narrow-width formulas hold on the whole rational radial test class with the condition printed on p.~519.
+
+\step{A numerical check of the two poles and the prime weights.}
+For the explicit positive test \(b\) constructed in \S\ref{sec:criterion}, let \(b_Y(x)=b(x-Y)\). The following compares independently computed sides of \eqref{eq:full}. The right column uses only the 269 positive ordinates returned by PARI/GP's \texttt{lfunzeros(1,[0,500])}.
+\[
+\begin{array}{c|r|r}
+ Y & W(b_Y)-P(b_Y)&-2\re\displaystyle\sum_{0<\gamma<500} B_b(i\gamma)e^{i\gamma Y}\\ \hline
+ 0&-0.010280568647&-0.010280568644\\
+ 2& \phantom{-}0.013557403473&\phantom{-}0.013557403463\\
+ 4&-0.013172007273&-0.013172007273
+\end{array}
+\]
+For reproducibility, the left column sums all \(p^k\le e^{Y+3}\), takes \(0\le j\le54\) in the real-place series, and uses the period-four Fourier series of the density \(h_0\) from \S\ref{sec:criterion} through mode 800. Its \(n\)-th coefficient is \(H(i\pi n/2)/4\), with \(H\) the product in that section. The calculation used 70 product factors and 40 decimal digits of working precision. This is a finite-height check of normalization. The proof of \eqref{eq:main} uses the analytic identities above.
+
+\partpage{A trace class construction from the local data}{sec:primefamily}
+\step{Why the direct sum requires a modification.}
+Even for a one-sided smooth test only the \emph{scalar} local traces are locally finite. For a nonnegative nonzero such \(b\), every \(L_p(b)\) has the constant mode with eigenvalue \(B_b(-A)>0\). The bounded direct sum \(\bigoplus_p L_p(b)\) on the sum of the circle spaces is not compact. Indeed unit eigenvectors in different circles are orthogonal, while their images have fixed nonzero norm. Removing the constant modes still leaves first Fourier modes with eigenvalues \(B_b(-A-2\pi i/\log p)\to B_b(-A)\). This prevents interpreting the finite scalar sum for a fixed test as the ordinary Hilbert trace of this direct sum.
+
+\step{A cutoff that does preserve every local diagonal.}
+Fix a smooth even function \(0\le\chi\le1\), zero on \([-1/2,1/2]\) and equal to one for \(|t|\ge3/4\). Write \(c_p=\log p\). For \(b\in C_c^\infty(\R)\), \(b(0)=0\), define on the fixed Hilbert space \(\bigoplus_p L^2(\R/c_p\Z)\) the operator
+\[
+ T_f(b)=\bigoplus_p \int_\R
+     b(y)e^{-|y|/2}\chi(y/c_p)V_y\dd y .
+\]
+This map is linear in \(b\). If \(\supp b\subset[-L,L]\), the entire operator at \(p\) is zero for \(c_p>2L\). Each surviving convolution has a smooth kernel because its weight vanishes around \(y=0\). Its Poisson trace samples \(y=kc_p\), where \(\chi(k)=1\) for every nonzero integer \(k\). Hence \(T_f(b)\) is trace class with trace \(W_f(b)\). The cutoff is in orbit time divided by the orbit length, so it retains exactly the sampling points used in this calculation.
+
+The real-place term has an equally direct realization. On \(\ell^2(\Z_{\ge0})\) take the diagonal operator \(T_\infty(b)\) with entries
+\[
+          \int_\R b(y)e^{-(2j+1/2)|y|}\dd y,\qquad j\ge0 .
+\]
+Their absolute sum is bounded by \(\int |b(y)|k_\infty(|y|)dy<\infty\). Add two one-dimensional summands acting by \(-B_b(A)\) and \(-B_b(-A)\). The resulting trace class operator \(T(b)\) satisfies \(\Tr T(b)=W(b)-P(b)\) for every admissible radial \(b\). This construction uses primes, the real-place density, and the specified pole terms alone.
+
+\step{Testing identification with the global convolution.}
+Fix \(p\) and choose a nonnegative nonzero \(b\) supported inside \((0.39c_p,0.41c_p)\). The \(p\)-component of \(T_f(b)\) is zero. For \(b*b\), its support is inside \((0.78c_p,0.82c_p)\), where the cutoff is one. The constant Fourier mode then has strictly positive eigenvalue. Consequently \(T_f(b*b)\ne T_f(b)^2\). The local construction realizes the desired scalar functional, but identifying this family with the manuscript's convolution action by an intertwiner would require the convolution law. The full-width equality of traces follows from \eqref{eq:full}. For smaller widths the exact relation is \(G_d(b)-\Tr T(b)=\Tr(A_b|_{\Ncal_{d,A}})\).
+
+\partpage{An Euler product regularization and its remaining term}{sec:euler}
+Use the unshifted variable \(s\). On \(\ell^2\) of the primes consider \(D(s)e_p=p^{-s}e_p\). When \(\sigma=\re s>1/2\), \(\sum_p p^{-2\sigma}<\infty\), and \(\|D(s)\|=2^{-\sigma}<1\). Thus \(D(s)\) is Hilbert--Schmidt throughout the half-plane where one wants to exclude zeros. Its regularized determinant is given by the convergent product
+\begin{equation}
+ \det\nolimits_2(\id-D(s))
+ =\prod_p(1-p^{-s})e^{p^{-s}}
+ =\exp\left(-\sum_{p}\sum_{k\ge2}\frac{p^{-ks}}{k}\right).
+ \label{eq:det}
+\end{equation}
+The double sum and its derivatives converge normally on compact subsets of \(\sigma>1/2\). This determinant is holomorphic and nowhere zero there. On \(\sigma>1\), expansion of the Euler product gives
+\[
+ -\frac{\zeta'}{\zeta}(s)=
+       \sum_p (\log p)p^{-s}+E_2(s),\qquad
+ E_2(s)=\sum_{p,k\ge2}(\log p)p^{-ks}.
+\]
+The derivative \(E_2\) accounts for all higher prime powers. Any singularity of the continued logarithmic derivative in \(\sigma>1/2\), after its pole at \(1\) is removed, must therefore come from the centered first-power sum. Nonvanishing of \eqref{eq:det} does not give nonvanishing of \(\zeta\).
+
+\step{Trying to restore the missing first power.}
+The finite functions
+\[
+ H_X(s)=\sum_{p\le X}(\log p)p^{-s}-\int_1^X t^{-s}\dd t
+\]
+are entire, including at \(s=1\). For \(\sigma>1\) their limit is
+\begin{equation}
+ H(s)=-\frac{\zeta'}{\zeta}(s)-E_2(s)-\frac{1}{s-1}.
+ \label{eq:H}
+\end{equation}
+The singularity at \(1\) is removable. Local boundedness of \(H_X\) throughout \(\sigma>1/2\) would finish the zero-free argument. Montel's theorem would give subsequential holomorphic limits there, and \eqref{eq:H} would identify the continuation by uniqueness. An off-line zero on the right would instead give residue \(-m_\rho\).
+
+Partial summation displays the estimate this route actually requires. With \(\vartheta(t)=\sum_{p\le t}\log p\),
+\[
+ H_X(s)=X^{-s}\{\vartheta(X)-X+1\}
+      +s\int_1^X\{\vartheta(t)-t+1\}t^{-s-1}\dd t .
+\]
+An error \(O_\epsilon(t^{1/2+\epsilon})\) for every \(\epsilon>0\) is sufficient for local boundedness by absolute estimates. The known unconditional error \(O(t e^{-c\sqrt{\log t}})\) gives no such absolute estimate on a fixed line \(1/2<\sigma<1\) \cite{jy}. This leaves room for cancellation beyond an absolute bound. Section~\ref{sec:criterion} tests how much cancellation RH requires, using one compact test in the manuscript's class.
+
+\step{Extent over number fields.}
+For the manuscript's global measure the Mellin transforms at the poles and zeros must first be divided by \(V_F=\bar\mu_1(C_F^1)\) as on p.~623. For a fixed unitary Hecke character \(\chi\), choose the local parameters by \(L_v(s,\chi)=(1-a_vq_v^{-s})^{-1}\), with \(a_v=0\) at ramified finite places. The higher-power sum \(\sum_{v,k\ge2}(\log q_v)a_v^k q_v^{-ks}\) again converges normally on \(\re s>1/2\), since \(|a_v|\le1\), \(q_v\ge p\) over \(p\), and \([F:\Q]\) bounds both the residue degree and the number of places above \(p\). Thus the same regularization isolates a first-power sum for each character. Bounding those sums would require additional arithmetic input. The proof of the Hilbert-space identity \eqref{eq:main} here is for the ordinary zeta component. Full-divisor character formulas for idele classes have been obtained in other spaces \cite{meyer}.
+
+\partpage{One explicit positive test detects the remaining growth}{sec:criterion}
+Let \(\nu_j\) be uniform probability measure on \([-2^{-j},2^{-j}]\), \(j\ge1\). Their infinite convolution exists as the law of the sum of independent bounded variables, since \(\sum_j 2^{-j}=1\). It has support in \([-1,1]\) and transform
+\[
+ H(z)=\prod_{j\ge1}\frac{\sinh(2^{-j}z)}{2^{-j}z}.
+\]
+The product converges normally on compact sets by the quadratic Taylor remainder. Away from the zeros of individual factors it is nonzero, since the deviations from one are absolutely summable there. All its zeros are on the imaginary axis. On that axis the first \(N\) factors give \(O_N((1+|t|)^{-N})\) at \(z=it\), and each remaining factor has modulus at most one. Fourier inversion, with arbitrary \(N\), gives a nonnegative \(C^\infty\) density \(h_0\).
+
+Use the single test \(b(x)=e^{x-2}h_0(x-2)\). It is supported in \([1,3]\) and \(B_b(z)=e^{2z}H(z+1)\) has no zeros on \(|\re z|\le A\). It is chosen once, independently of all zeta zeros. For \(Y\ge0\) define the real quantity
+\begin{equation}
+ M_b(Y)= e^{Y/2}B_b(1/2)
+       -\sum_p\frac{\log p}{\sqrt p}\,b(\log p-Y).
+ \label{eq:M}
+\end{equation}
+Both terms are specified by the fixed kernel and the ordinary primes.
+
+\step{Exact growth theorem.}
+If \(\Theta=\sup_\rho(\re\rho-1/2)\), then
+\begin{equation}
+ \limsup_{Y\to\infty}\frac{\log(1+|M_b(Y)|)}{Y}=\Theta .
+ \label{eq:growth}
+\end{equation}
+In particular RH is equivalent to boundedness of \(M_b(Y)\) on \(Y\ge0\). Even a bound \(O_\epsilon(e^{\epsilon Y})\) for every \(\epsilon>0\) would suffice.
+
+To prove the statement, apply \eqref{eq:full} to \(b_Y(x)=b(x-Y)\). The second pole term and the real term are \(O_b(e^{-Y/2})\). For squares the remaining prime contribution is bounded in absolute value by
+\[
+ \|b\|_\infty e^{-(Y+1)/2}\,
+      \vartheta(e^{(Y+3)/2})=O_b(1)
+\]
+by the elementary Chebyshev bound. For \(k\ge3\) the series \(\sum_{p,k\ge3}(\log p)p^{-k/2}\) converges. Consequently,
+\[
+ M_b(Y)=\sum_\rho m_\rho B_b(\lambda_\rho)e^{Y\lambda_\rho}+O_b(1).
+\]
+The error is uniformly bounded for all \(Y\ge0\). The coefficients are absolutely summable. Symmetry gives \(\Theta\ge0\), and the preceding formula proves the upper bound in \eqref{eq:growth}. Under RH it gives boundedness itself.
+
+For the lower bound, if the left side were less than \(\Theta\), take an exponent strictly between them. The Laplace transform of the displayed zero sum would then be holomorphic to the right of that exponent, by its growth bound. For \(\re w>A\) this transform is \(\sum_\rho m_\rho B_b(\lambda_\rho)/(w-\lambda_\rho)\). The series continues normally on compact sets off its poles, by rapid decay and the zero count. Some \(\lambda_\rho\) lies to the right of the chosen exponent. Its residue is nonzero by the construction of \(b\), a contradiction. When \(\Theta=0\), nonnegativity of the left side proves equality directly. This completes the theorem.
+
+\partpage{The estimate obtained, and what remains}{sec:estimate}
+For the particular \(b\) of \S\ref{sec:criterion}, put \(f_Y(t)=t^{-1/2}b(\log t-Y)\). The main term in \eqref{eq:M} is exactly \(\int_1^\infty f_Y(t)dt\). Integration by parts expresses the discrepancy through the error in the prime number theorem,
+\begin{equation}
+ M_b(Y)=\int_{e^{Y+1}}^{e^{Y+3}}
+   \{\vartheta(t)-t+1\}\,t^{-3/2}
+   \{b'(\log t-Y)-\tfrac12 b(\log t-Y)\}\dd t .
+ \label{eq:actual}
+\end{equation}
+Inserting the unconditional prime number theorem error from \S\ref{sec:euler} gives
+\(M_b(Y)=O_b(e^{Y/2-c'\sqrt Y})\) for some \(c'>0\). This proves cancellation relative to the main term, but gives only \(1/2\) as an upper bound for the limsup in \eqref{eq:growth}. To deduce RH one needs an upper bound of zero.
+
+The bounded correction from squares can even be evaluated asymptotically. Partial summation with \(\vartheta(t)=t+o(t)\) replaces
+\(\sum_p(\log p)p^{-1}b(2\log p-Y)\) by \(\int t^{-1}b(2\log t-Y)dt+o(1)=\tfrac12 B_b(0)+o(1)\). The error is \(o(1)\) because the integration interval has bounded endpoint ratio and the derivative of the weight is \(O_b(t^{-2})\). The terms \(k\ge3\) tend to zero by dominated convergence in their absolutely summable series. Thus
+\[
+ M_b(Y)=\sum_\rho m_\rho B_b(\lambda_\rho)e^{Y\lambda_\rho}
+                  +\tfrac12 B_b(0)+o(1).
+\]
+The first powers of primes carry the possible exponential growth even after the systematic square contribution is removed.
+
+\step{Conclusion.}
+The integral at a single prime can be corrected, the full-width global trace can be evaluated with both poles, and the loss at smaller widths can be realized on an actual invariant subspace. A full repair of the proposed RH proof would still have to prove that this subspace disappears for every positive width, or establish a rate-zero bound in \eqref{eq:actual} by arithmetic means. The width example explains why translation and Poisson symmetry alone do not give injectivity. The determinant and the prime number theorem estimates account for every term except the required strength of cancellation in the sum over primes in \eqref{eq:M}. I did not obtain that estimate or a proof of RH. The separately capped multiplicities on p.~522 would also require their own argument.
+
+\small
+\begin{thebibliography}{9}
+\bibitem{ms} Alessandro Maria Masullo, \emph{The Music of the Primes}, supplied 940-page manuscript, especially pp.~495--496, 514, 519--522 and 623.
+\bibitem{audit} \emph{An adversarial review of The Music of the Primes}, companion technical audit in this repository, \S 6. The earlier report \emph{Where the trace argument in The Music of the Primes fails} gives the counterexamples to the printed proof.
+\bibitem{bombieri} E. Bombieri, \href{https://www.claymath.org/wp-content/uploads/2022/05/riemann.pdf}{\emph{Problems of the Millennium: The Riemann Hypothesis}}, Clay Mathematics Institute.
+\bibitem{beurling} A. Beurling, \href{https://doi.org/10.1007/BF02395019}{\emph{On two problems concerning linear transformations in Hilbert space}}, Acta Math. \textbf{81} (1949), 239--255.
+\bibitem{duren} P. L. Duren, \emph{Theory of \(H^p\) Spaces}, Academic Press, 1970, Chapters 2 and 7.
+\bibitem{mty} M. J. Mossinghoff, T. S. Trudgian and A. Yang, \href{https://arxiv.org/abs/2212.06867}{\emph{Explicit zero-free regions for the Riemann zeta-function}}.
+\bibitem{jy} D. R. Johnston and A. Yang, \href{https://arxiv.org/abs/2204.01980}{\emph{Some explicit estimates for the error term in the prime number theorem}}.
+\bibitem{meyer} R. Meyer, \href{https://arxiv.org/abs/math/0311468}{\emph{On a representation of the idele class group related to primes and zeros of \(L\)-functions}}, Duke Math. J. \textbf{127} (2005), 519--595.
+\end{thebibliography}
+\end{document}
